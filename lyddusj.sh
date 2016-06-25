@@ -17,7 +17,7 @@ while [ 1 ]; do
         exit
     fi
     
-    amixer set "Stereo Master" 50%
+    amixer set "Stereo Master" 10%
     
     wget http://beta.nlb.no/titler/$BOOK_ID.mp3 -O /tmp/tittel.mp3
     wget http://beta.nlb.no/baksidetekst/$BOOK_ID.mp3 -O /tmp/baksidetekst.mp3
