@@ -4,11 +4,6 @@ if [ "$JINGLE" != "1" ]; then
     JINGLE="0"
 fi
 
-if [ "`ps aux | grep -v grep | grep /tmp/audio.mp3 | wc -l`" = "1" ]; then
-    echo "already playing"
-    exit
-fi
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ ! -e /tmp/boknummer.txt ]; then
@@ -22,13 +17,17 @@ while [ 1 ]; do
         exit
     fi
     
-    wget http://beta.nlb.no/titler/$BOOK_ID.mp3 -O /tmp/audio.mp3
-    play /tmp/audio.mp3
+    amixer set "Stereo Master" 50%
+    
+    wget http://beta.nlb.no/titler/$BOOK_ID.mp3 -O /tmp/tittel.mp3
+    wget http://beta.nlb.no/baksidetekst/$BOOK_ID.mp3 -O /tmp/baksidetekst.mp3
+    ffmpeg -i /tmp/tittel.mp3 -y /tmp/tittel.wav
+    ffmpeg -i /tmp/baksidetekst.mp3 -y /tmp/baksidetekst.wav
+    play /tmp/tittel.wav
     sleep 2
-    wget http://beta.nlb.no/baksidetekst/$BOOK_ID.mp3 -O /tmp/audio.mp3
-    play /tmp/audio.mp3
+    play /tmp/baksidetekst.wav
     if [ "$JINGLE" = "1" ]; then
-        play "$DIR/NLB.mp3"
+        play "$DIR/NLB.wav"
     fi
     sleep 10
 done

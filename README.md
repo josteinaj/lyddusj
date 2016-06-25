@@ -8,6 +8,8 @@ Installasjon
 
 ### Avhengigheter:
 
+Jeg tror dette er alle avhengighetene (ikke 100% sikker):
+
 ```
-sudo apt-get install curl wget sox libsox-fmt-mp3
+sudo apt-get install curl wget sox libsox-fmt-mp3 ffmpeg
 ```
