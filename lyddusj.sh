@@ -25,9 +25,9 @@ while [ 1 ]; do
     wget http://beta.nlb.no/baksidetekst/$BOOK_ID.mp3 -O /tmp/baksidetekst.mp3
     #"$FFMPEG" -i /tmp/tittel.mp3 -y /tmp/tittel.wav
     #"$FFMPEG" -i /tmp/baksidetekst.mp3 -y /tmp/baksidetekst.wav
-    play /tmp/tittel.mp3
+    play /tmp/tittel.mp3 -r 44100 -b 16 -c 2
     sleep 2
-    play /tmp/baksidetekst.mp3
+    play /tmp/baksidetekst.mp3 -r 44100 -b 16 -c 2
     if [ "$JINGLE" = "1" ]; then
         play "$DIR/NLB.mp3"
     fi
