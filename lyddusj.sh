@@ -23,13 +23,13 @@ while [ 1 ]; do
     
     wget http://beta.nlb.no/titler/$BOOK_ID.mp3 -O /tmp/tittel.mp3
     wget http://beta.nlb.no/baksidetekst/$BOOK_ID.mp3 -O /tmp/baksidetekst.mp3
-    "$FFMPEG" -i /tmp/tittel.mp3 -y /tmp/tittel.wav
-    "$FFMPEG" -i /tmp/baksidetekst.mp3 -y /tmp/baksidetekst.wav
-    play /tmp/tittel.wav
+    #"$FFMPEG" -i /tmp/tittel.mp3 -y /tmp/tittel.wav
+    #"$FFMPEG" -i /tmp/baksidetekst.mp3 -y /tmp/baksidetekst.wav
+    play /tmp/tittel.mp3
     sleep 2
-    play /tmp/baksidetekst.wav
+    play /tmp/baksidetekst.mp3
     if [ "$JINGLE" = "1" ]; then
-        play "$DIR/NLB.wav"
+        play "$DIR/NLB.mp3"
     fi
     sleep 10
 done
