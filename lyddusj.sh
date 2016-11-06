@@ -6,6 +6,8 @@ fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+FFMPEG=`command -v avconv || command -v ffmpeg`
+
 if [ ! -e /tmp/boknummer.txt ]; then
     $DIR/update-list.sh
 fi
@@ -21,8 +23,8 @@ while [ 1 ]; do
     
     wget http://beta.nlb.no/titler/$BOOK_ID.mp3 -O /tmp/tittel.mp3
     wget http://beta.nlb.no/baksidetekst/$BOOK_ID.mp3 -O /tmp/baksidetekst.mp3
-    ffmpeg -i /tmp/tittel.mp3 -y /tmp/tittel.wav
-    ffmpeg -i /tmp/baksidetekst.mp3 -y /tmp/baksidetekst.wav
+    "$FFMPEG" -i /tmp/tittel.mp3 -y /tmp/tittel.wav
+    "$FFMPEG" -i /tmp/baksidetekst.mp3 -y /tmp/baksidetekst.wav
     play /tmp/tittel.wav
     sleep 2
     play /tmp/baksidetekst.wav

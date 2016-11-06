@@ -11,7 +11,7 @@ Installasjon
 Jeg tror dette er alle avhengighetene (ikke 100% sikker):
 
 ```
-sudo apt-get install curl wget sox libsox-fmt-mp3 ffmpeg
+sudo apt-get install curl wget sox libsox-fmt-mp3 libav-tools
 ```
 
 Legg dette i crontab med rot-rettigheter (`sudo crontab -e`, tilpass stier hvis nøvendig):
